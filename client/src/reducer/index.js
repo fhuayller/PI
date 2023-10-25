@@ -3,6 +3,25 @@ const initialState = {
   allDrivers: [], // Guarda todos los drivers originales
   drivers: [], 
   teams: [],
+  // detail: {
+  //   id: null,
+  //   driverRef: "",
+  //   number: null,
+  //   code: "",
+  //   name: {
+  //     forename: "",
+  //     surname: ""
+  //   },
+  //   image: {
+  //     url: "",
+  //     imageby: ""
+  //   },
+  //   dob: "",
+  //   nationality: " ",
+  //   url: "",
+  //   teams: "",
+  //   description: ''
+  //   }
   detail: []
 }
   
@@ -54,6 +73,7 @@ export default function rootReducer(state = initialState, action) {
       case 'GET_ID':
         return {
           ...state,
+          //detail: action.payload
           detail: action.payload
         }
         

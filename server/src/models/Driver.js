@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     image: {
-      type: DataTypes.STRING, // O DataTypes.JSONB según la base de datos que estés utilizando
+      type: DataTypes.STRING,
       allowNull: true,
     },
     nationality: {

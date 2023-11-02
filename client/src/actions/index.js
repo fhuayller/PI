@@ -35,6 +35,21 @@ export function getTeams(){
         })
     }
 }
+export function getIdDriver(idDriver) {
+    return function (dispatch) {
+      // Llama al backend directamente
+      axios.get(`http://localhost:3001/drivers/${idDriver}`)
+        .then((response) => {
+          dispatch({
+            type: 'GET_ID',
+            payload: response.data,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+  }
 
 export function postDrivers(payload){
     return async function (dispatch){
@@ -57,19 +72,6 @@ export function filterStatus (payload) { //argumento que me llega es el valor de
     }
 }
 
-export function getIdDriver(idDriver) {
-    return async function (dispatch) {
-      try {
-        var json = await axios.get(`http://localhost:3001/drivers/${idDriver}`);
-        
-        return dispatch({
-          type: 'GET_ID',
-          payload: json.data,
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }
+
 
 //nota, mover la logica a reducer o componente.

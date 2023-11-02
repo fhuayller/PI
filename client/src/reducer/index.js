@@ -3,25 +3,6 @@ const initialState = {
   allDrivers: [], // Guarda todos los drivers originales
   drivers: [], 
   teams: [],
-  // detail: {
-  //   id: null,
-  //   driverRef: "",
-  //   number: null,
-  //   code: "",
-  //   name: {
-  //     forename: "",
-  //     surname: ""
-  //   },
-  //   image: {
-  //     url: "",
-  //     imageby: ""
-  //   },
-  //   dob: "",
-  //   nationality: " ",
-  //   url: "",
-  //   teams: "",
-  //   description: ''
-  //   }
   detail: []
 }
   
@@ -39,13 +20,13 @@ export default function rootReducer(state = initialState, action) {
 
         const ascArr = action.payload === 'asc' 
           ? sortedDrivers.sort((a, b) => {
-            const nameA = `${a.name.forename} ${a.name.surname}` || '';
-            const nameB = `${b.name.forename} ${b.name.surname}` || '';
+            const nameA = `${a.name?.forename || a.forename} ${a.name?.surname || a.surname}`;
+            const nameB = `${b.name?.forename || b.forename} ${b.name?.surname || b.surname}`;
             return nameA.localeCompare(nameB);
           })
           : sortedDrivers.sort((a, b) => {
-            const nameA = `${a.name.forename} ${a.name.surname}` || '';
-            const nameB = `${b.name.forename} ${b.name.surname}` || '';
+            const nameA = `${a.name?.forename || a.forename} ${a.name?.surname || a.surname}`;
+            const nameB = `${b.name?.forename || b.forename} ${b.name?.surname || b.surname}`;
             return nameB.localeCompare(nameA);
           });
 

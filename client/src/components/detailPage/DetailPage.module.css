@@ -1,0 +1,16 @@
+.contain{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    background: url('../homePage/Enn6LTXXYAMB1fS.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}

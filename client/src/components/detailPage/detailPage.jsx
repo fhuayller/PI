@@ -3,40 +3,62 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect } from "react";
 import { getIdDriver } from "../../actions";
+import styles from './DetailPage.module.css'
 
- export default function DetailPage(props) {
-    const dispatch = useDispatch();
-    
-    const driver = useSelector((state) => {
-        console.log('Estado actual:', state.detail);
-        return state.detail;
-      });
+export default function DetailPage() {
+  const dispatch = useDispatch();
 
-    var { idDriver } = useParams()
-    console.log(idDriver)
-    console.log(driver)
+  const driver = useSelector((state) => {
+    console.log('Estado actual:', state.detail);
+    return state.detail;
+  });
 
-    useEffect(( ) => {
-        // var idDriver = window.location.pathname.split('/').pop();
-        console.log(idDriver)
+  const { idDriver } = useParams();
+  
+  useEffect(() => {
+    dispatch(getIdDriver(idDriver));
+  }, [dispatch, idDriver]);
 
-        dispatch(getIdDriver(idDriver))
-      }, []);
+  const getFullName = () => {
+    if (driver.name) {
+      return `${driver.name.forename} ${driver.name.surname}`;
+    } else if (driver.forename && driver.surname) {
+      return `${driver.forename} ${driver.surname}`;
+    } else {
+      return "Nombre no disponible";
+    }
+  };
 
-      
+  const getTeams = () => {
+    if (driver.teams) {
+      // Caso de la API
+      if (Array.isArray(driver.teams)) {
+        return driver.teams.map((team) => team.name).join(", ");
+      } else {
+        // Caso de la base de datos
+        return driver.teams;
+      }
+    } else if (driver.Teams && Array.isArray(driver.Teams)) {
+      // Caso de la base de datos
+      return driver.Teams.map((team) => team.name).join(", ");
+    } else {
+      return "Equipos no disponibles";
+    }
+  };
 
-      if (driver.name.forename) return (
-        <div>
-          <h1>{driver.name?.forename} {driver.name?.surname}</h1>
-          <p>Number: {driver.number}</p>
-          <img src={driver.image?.url} alt="Driver" />
-          <p>Date of Birth: {driver.dob}</p>
-          <p>Nationality: {driver.nationality}</p>
-          <p>Teams: {driver.teams}</p>
-          <p>Description: {driver.description}</p>
-        </div>
-      )
-      else return(
-        <div>loading...</div>
-      );
+  if (driver.name || driver.forename) {
+    return (
+      <div className= {styles.contain} >
+        <h1>{getFullName()}</h1>
+        <p>Number: {driver.number}</p>
+        <img src={driver.image.url} alt="Driver" />
+        <p>Date of Birth: {driver.dob}</p>
+        <p>Nationality: {driver.nationality}</p>
+        <p>Teams: {getTeams()}</p>
+        <p>Description: {driver.description}</p>
+      </div>
+    );
+  } else {
+    return <div>Loading...</div>;
   }
+}

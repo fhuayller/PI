@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: url('./Enn6LTXXYAMB1fS.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.contain{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 100px; 
+    margin-right: 100px; 
+}
+  
+.card {
+    width: calc(30% - 20px);
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.7); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #a8a7a7; 
+    transition: transform 0.3s; /* Agrega una transición para suavizar la animación */
+  }
+  
+  .card:hover {
+    transform: scale(1.1); /* Hace que la tarjeta se haga más grande al pasar el ratón sobre ella */
+  }

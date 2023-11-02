@@ -1,0 +1,21 @@
+.paginado {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.num {
+  padding: 1px;
+  margin: 0 4px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+  
+.num:hover {
+  background-color: #eee;
+}
